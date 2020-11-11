@@ -7,7 +7,6 @@ jobs:
   populateDescription:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
       - name: pull-request
         uses: repo-sync/pull-request@v2
         with:

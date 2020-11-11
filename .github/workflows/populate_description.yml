@@ -1,0 +1,14 @@
+name: Populate PR Description
+on:
+  pull_request:
+    types:
+      - opened
+jobs:
+  populateDescription:
+    runs-on: ubuntu-latest
+    steps:
+      - name: update-pull-request
+        uses: kt3k/update-pr-description@v1.0.0
+        with:
+          pr_body: "Description of the PR"
+          github_token: ${{ secrets.GITHUB_TOKEN }}

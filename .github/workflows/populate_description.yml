@@ -1,14 +1,19 @@
 name: Populate PR Description
-on:
-  pull_request:
-    types:
-      - opened
+on: pull_request
 jobs:
   populateDescription:
     runs-on: ubuntu-latest
     steps:
+      - run : echo
       - name: update-pull-request
-        uses: kt3k/update-pr-description@v1.0.0
+        uses: tzkhan/pr-update-action@v2
         with:
-          pr_body: "Description of the PR"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          base-branch-regex: "${{ github.base_ref }}"
+          head-branch-regex:  "${{ github.head_ref }}"
+          title-template: '[%headbranch%] '
+          body-template: |
+            Merging into '%basebranch%'
+            [Link to %headbranch%](https://url/to/browse/ticket/%headbranch%)
+          body-update-action: 'suffix'
+          body-uppercase-base-match: false

@@ -7,10 +7,12 @@ jobs:
   populateDescription:
     runs-on: ubuntu-latest
     steps:
-      - name: pull-request
-        uses: repo-sync/pull-request@v2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Dump GitHub context
+          env:
+            GITHUB_CONTEXT: ${{ toJson(github) }}
+          run: |
+            echo "$GITHUB_CONTEXT"
+            echo ${{ github.event.pull_request.title }}
       - name: update-pull-request
         uses: kt3k/update-pr-description@v1.0.0
         with:

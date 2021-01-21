@@ -7,7 +7,7 @@ jobs:
   populateDescription:
     runs-on: ubuntu-latest
     steps:
-      - name: update-pull-request
+      - name: Update pull request
         uses: kt3k/update-pr-description@v1.0.0
         with:
           pr_body: "Description of the PR"
